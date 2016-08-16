@@ -1,6 +1,6 @@
 {
   "name": "fyp",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Fuck you promises",
   "license": "substanceware",
   "main": "index.js",
