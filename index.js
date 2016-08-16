@@ -9,13 +9,14 @@ function _catch (callback) {
 function _then (callback) {
   return function (result) {
     callback(null, result);
+    return result;
   };
 }
 
 
 function Fyp (promise) {
   return function (callback) {
-    promise
+    return promise
       .catch(_catch(callback))
       .then(_then(callback));
   }
