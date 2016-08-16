@@ -2,6 +2,7 @@
 function _catch (callback) {
   return function (error) {
     callback(error, null);
+    throw error;
   };
 }
 
@@ -12,10 +13,12 @@ function _then (callback) {
 }
 
 
-function Fyp (promise, callback) {
-  promise
-    .catch(_catch(callback))
-    .then(_then(callback));
+function Fyp (promise) {
+  return function (callback) {
+    promise
+      .catch(_catch(callback))
+      .then(_then(callback));
+  }
 }
 
 Fyp.then = _then;

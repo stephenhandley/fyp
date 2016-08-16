@@ -7,12 +7,12 @@ const DERP = {
   hundred: 100
 };
 
-function makeCallback (error, done) {
+function makeCallback (shouldError, done) {
   return function (error, hundred) {
-    if (error) {
+    if (shouldError) {
       Assert.equal(error, DERP.error);
     } else {
-      Assert.equal(result, DERP.hundred);
+      Assert.equal(hundred, DERP.hundred);
     }
     done();
   }
@@ -37,13 +37,13 @@ module.exports = {
     Promise.resolve(DERP.hundred).then(Fyp.then(callback));
   },
 
-  promiseFuck: function (done) {
-    var throwPromise = Promise.reject(DERP.error);
-    Fyp(throwPromise, makeCallback(true, done));
+  promises: function (done) {
+    var thenPromise = Promise.resolve(DERP.hundred);
+    Fyp(thenPromise)(makeCallback(false, done));
   },
 
-  promiseYou: function (done) {
-    var throwPromise = Promise.resolve(DERP.hundred);
-    Fyp(throwPromise, makeCallback(false, done));
+  lol: function (done) {
+    var throwPromise = Promise.reject(DERP.error);
+    Fyp(throwPromise)(makeCallback(true, done));
   }
 }
