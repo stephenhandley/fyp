@@ -1,8 +1,11 @@
 # fyp
 Fuck you promises
 
-# basically just for this bullshit
+# basically just for this type of bullshit
 ```
-    let ref = Firebase.database().ref(path);
-    Fyp(ref.on('value'), callback);
+    function getSomething (path, callback) {
+      var ref = Firebase.database().ref(path);
+      var onValue = Fyp(ref.on('value'));
+      onValue(callback);
+    }
 ```
